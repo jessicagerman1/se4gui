@@ -14,11 +14,22 @@ public class drawPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);//the graphics object g is inherited. Sets the graphics attribute of the inherited paint component method to the graphics object parameter, g
         for (Object s:shapes) { //for each (loop).. for each shape added to Object goes through the loop
+
+            if(s instanceof Rectangle){
+                ((Rectangle) s).draw(g);
+            }
             if(s instanceof Square){
                 ((Square) s).draw(g);
             }
         }
     }
+
+
+
+     public void drawRectangle(int x, int y, int width, int height, boolean filledIn){
+        shapes.add(new Rectangle(x,y,width,height,filledIn,colour));
+        repaint();
+     }
 
     public void drawSquare(int x, int y, int length, boolean filledIn) {
         shapes.add(new Square(x,y,length,filledIn, colour));
