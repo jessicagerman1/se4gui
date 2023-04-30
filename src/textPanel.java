@@ -1,8 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class textPanel extends JPanel {
     private String str;
@@ -18,6 +15,10 @@ public class textPanel extends JPanel {
 
     public String[] getInstructions() {
         return str.split("\n");//splits by each line as each command is on a new line, returns separate commands
+    }
+
+    public String getText() {
+        return textArea.getText();
     }
 
     public void updateTextArea(String[] instructions) {

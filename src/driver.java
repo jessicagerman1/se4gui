@@ -2,7 +2,7 @@ import javax.swing.*;
 	public class driver {
 	    public static void main(String[] args){
 	        frame frame = new frame();
-	        frame.setTitle("Assignment 2");
+	        frame.setTitle("SE4 GUI");
 	        frame.setSize(600,600);
 	        frame.setLocationRelativeTo(null);
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
