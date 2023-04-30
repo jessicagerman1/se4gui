@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class TextPanel extends JPanel {
+public class textPanel extends JPanel {
     private String str;
     private JTextArea textArea;// makes it an attribute of the class so can use in multiple methods
-    public TextPanel() {
+    public textPanel() {
         textArea = new JTextArea();
         textArea.setEditable(true);
         textArea.setLineWrap(true);
