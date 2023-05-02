@@ -10,8 +10,8 @@ import java.io.IOException;
 public class frame extends JFrame implements ActionListener {
     private textPanel textPanel = new textPanel();
     private drawPanel drawPanel = new drawPanel();
-    private int xcoordinate = 0;
-    private int ycoordinate = 0;
+    private int xcoordinate =0;
+    private int ycoordinate =0;
     private commandParsing parser = new commandParsing();
 
     public frame() {
@@ -41,6 +41,9 @@ public class frame extends JFrame implements ActionListener {
         JMenuItem save = new JMenuItem("SAVE");
         file.add(save);
         save.addActionListener(this);
+        JMenuItem clear = new JMenuItem("CLEAR");
+        file.add(clear);
+        clear.addActionListener(this);
 
         JMenuItem exit = new JMenuItem("EXIT");
         file.add(exit);
@@ -58,7 +61,7 @@ public class frame extends JFrame implements ActionListener {
         this.add(drawPanel);//adds the draw panel to the frame
 
         //run button
-        JButton b = new JButton("RUN");
+        JButton b=new JButton("RUN");
         textPanel.add(b);
         b.addActionListener(this);
 
@@ -75,5 +78,10 @@ public class frame extends JFrame implements ActionListener {
         if (arg.equals("RUN")) {
             parser.parse(textPanel.getText(), xcoordinate, ycoordinate, drawPanel);
         }
+
+            if (arg.equals("CLEAR")) {
+            drawPanel.clearsPanel();
+            }
+
     }
 }
