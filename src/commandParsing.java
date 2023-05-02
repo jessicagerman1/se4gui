@@ -64,6 +64,11 @@ public class commandParsing {
                 boolean filledIn =Boolean.parseBoolean(args[2]);
                 draw.drawCircle(x, y, radius, filledIn);
             }
-    }
+
+            if (Objects.equals(args[0], "clear")) {
+                drawPanel.clearsPanel();
+
+            }
+        }
     }
 }

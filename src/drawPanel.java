@@ -32,12 +32,9 @@ public class drawPanel extends JPanel {
         repaint();//repaint re-paints
     }
 
-
-     public void clearsPanel(){
-        shapes.clear();//clears all from array list
-        repaint();
-     }
-
+    public static void clearsPanel(){
+        shapes.clear();
+    }
      public void drawRectangle(int x, int y, int width, int height, boolean filledIn){
         shapes.add(new Rectangle(x,y,width,height,filledIn,colour));
         repaint();
