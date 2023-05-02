@@ -55,7 +55,15 @@ public class commandParsing {
                 boolean filledIn =Boolean.parseBoolean(args[2]);
                 draw.drawRectangle(x, y, length, length2, filledIn); //calls the draw square method within the draw panel class with filledIn as false
             }
-        }
-
+            if (Objects.equals(args[0], "circle")) {
+                int radius = IsNumber(args[1]);
+                if (radius  <= 0 ) {
+                    JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
+                boolean filledIn =Boolean.parseBoolean(args[2]);
+                draw.drawCircle(x, y, radius, filledIn);
+            }
+    }
     }
 }
