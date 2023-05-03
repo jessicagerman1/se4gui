@@ -87,6 +87,21 @@ public class frame extends JFrame implements ActionListener {
             chooser.showOpenDialog(null);
             textPanel.loadFromFile(chooser);
         }
-    }
-
+        if (arg.equals("SAVE")){
+            String savedFilesName="";
+            try{
+                savedFilesName=JOptionPane.showInputDialog("Choose the name of your saved image file...");//shows text box to user to enter the name of the file they want
+                BufferedImage image = new BufferedImage(drawPanel.getWidth(),drawPanel.getHeight(),BufferedImage.TYPE_INT_RGB);//creates an image as an object of BufferedImage to have the parameters of the component's height and width and for image to be coloured
+                (drawPanel).paint(image.getGraphics());//calls component's paint method using graphics object of the image
+                ImageIO.write(image, "PNG", new File(savedFilesName+".png"));
+                JOptionPane.showMessageDialog(null, "PNG Saved");
+            }
+            catch (NullPointerException ne) {
+                JOptionPane.showMessageDialog(null, "File save cancelled");
+            }
+            catch (IOException e1){
+                JOptionPane.showMessageDialog(null, "A problem occurred when saving the file");
+            }
+        }
+}
 }
