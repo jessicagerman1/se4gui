@@ -1,8 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 public class textPanel extends JPanel {
     private String str;
+    public JFileChooser chooser = new JFileChooser();
     private JTextArea textArea;// makes it an attribute of the class so can use in multiple methods
     public textPanel() {
         textArea = new JTextArea();
@@ -21,6 +25,22 @@ public class textPanel extends JPanel {
         return textArea.getText();
     }
 
+
+    public void loadFromFile(JFileChooser evt) {
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        String filename=f.getAbsolutePath();
+        try {
+            FileReader reader = new FileReader(filename);
+            BufferedReader br = new BufferedReader(reader);
+            textArea.read(br, null);
+            br.close();
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
     public void updateTextArea(String[] instructions) {
         str = "";
         for (String s: instructions) { //adds all lines in instructions string array to str value

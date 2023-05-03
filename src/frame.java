@@ -1,11 +1,7 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class frame extends JFrame implements ActionListener {
     private textPanel textPanel = new textPanel();
@@ -60,11 +56,10 @@ public class frame extends JFrame implements ActionListener {
         drawPanel.setBackground(Color.ORANGE);
         this.add(drawPanel);//adds the draw panel to the frame
 
-        //run button
+//        //run button
         JButton b=new JButton("RUN");
         textPanel.add(b);
         b.addActionListener(this);
-
     }
 
     @Override
@@ -81,7 +76,17 @@ public class frame extends JFrame implements ActionListener {
 
             if (arg.equals("CLEAR")) {
             drawPanel.clearsPanel();
+        }
+
+        if(arg.equals("RUN")) {
+            parser.parse(textPanel.getText(), xcoordinate, ycoordinate, drawPanel);
             }
 
+        if (arg.equals("LOAD")) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.showOpenDialog(null);
+            textPanel.loadFromFile(chooser);
+        }
     }
+
 }
