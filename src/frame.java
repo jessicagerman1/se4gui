@@ -86,10 +86,6 @@ public class frame extends JFrame implements ActionListener {
             drawPanel.clearsPanel();
         }
 
-        if(arg.equals("RUN")) {
-            parser.parse(textPanel.getText(), xcoordinate, ycoordinate, drawPanel);
-            }
-
         if (arg.equals("LOAD")) {
             JFileChooser chooser = new JFileChooser();
             chooser.showOpenDialog(null);
