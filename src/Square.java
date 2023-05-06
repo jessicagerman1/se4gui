@@ -1,9 +1,7 @@
 import java.awt.*;
 
-public class Square {
-    private int x, y, length;
-    private boolean filledIn;
-    private Color colour;
+public class Square extends Shape{
+    private int length;
 
     public Square(int x, int y, int length, boolean filledIn, Color colour) {
         this.x = x;

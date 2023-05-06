@@ -1,9 +1,7 @@
 import java.awt.*;
 
-public class Rectangle {
-        private int x, y, width, height;
-        private boolean filledIn;
-        private Color colour;
+public class Rectangle extends Shape {
+        private int width, height;
 
     public Rectangle(int x, int y, int width, int height, boolean filledIn, Color colour) {
         this.x = x;

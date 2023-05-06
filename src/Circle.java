@@ -1,10 +1,7 @@
 import java.awt.*;
 
-public class Circle {
-    private int x, y, radius;
-    private boolean filledIn;
-    private Color colour;
-    //write out these attributes and right-click Circle to generate constructor
+public class Circle extends Shape{
+    private int radius;
 
     public Circle(int x, int y, int radius, boolean filledIn, Color colour) {
         this.x = x;
