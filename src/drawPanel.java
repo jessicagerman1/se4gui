@@ -3,11 +3,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class drawPanel extends JPanel {
-    private ArrayList <Object> shapes = new ArrayList<Object>();//In future could change<Object> to stn to more specific if make a class for shapes to inherit from
+    private static ArrayList <Object> shapes = new ArrayList<Object>();
     private Color colour;
     public drawPanel(){
         colour= Color.BLACK;
-
     }
 
     @Override
@@ -17,7 +16,9 @@ public class drawPanel extends JPanel {
             if(s instanceof Circle){
                 ((Circle) s).draw(g);
             }
-
+            if(s instanceof Line) {
+                ((Line) s).draw(g);//adding a new shape requires a new if statement
+            }
             if(s instanceof Rectangle) {
                 ((Rectangle) s).draw(g);
             }
@@ -32,16 +33,24 @@ public class drawPanel extends JPanel {
         repaint();//repaint re-paints
     }
 
-    public static void clearsPanel(){
+    public void clearsPanel(){
         shapes.clear();
+        repaint();
     }
+    public void drawLine(int x, int y, int newX, int newY){
+        shapes.add(new Line(x, y, newX, newY, colour));
+        repaint();
+    }
+    public void changeColour(Color colour){
+        this.colour = colour; // colour is now equal to the new colour passed in
+     }
      public void drawRectangle(int x, int y, int width, int height, boolean filledIn){
         shapes.add(new Rectangle(x,y,width,height,filledIn,colour));
         repaint();
      }
 
     public void drawSquare(int x, int y, int length, boolean filledIn) {
-        shapes.add(new Square(x,y,length,filledIn, colour));
+        shapes.add(new Square(x, y, length, filledIn, colour));
         repaint();
     }
 }
