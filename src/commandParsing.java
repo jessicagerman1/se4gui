@@ -31,7 +31,7 @@ public class commandParsing {
                 lineNumber++;
                 continue;
             }
-            if (Objects.equals(args[0], "square")) {
+            if (args[0].equalsIgnoreCase( "square")) {
                 if (args.length != 3) {
                     JOptionPane.showMessageDialog(null, "Incorrect number of arguments", "Error", JOptionPane.ERROR_MESSAGE);
                     lineNumber++;
@@ -47,7 +47,7 @@ public class commandParsing {
                 draw.drawSquare(x, y, length, filledIn); //calls the draw square method within the draw panel class with filledIn as false
                 lineNumber++;
             }
-            if (Objects.equals(args[0], "rectangle")) {
+            if (args[0].equalsIgnoreCase("rectangle")) {
                 if (args.length != 4) {
                     JOptionPane.showMessageDialog(null, "Incorrect number of arguments", "Error", JOptionPane.ERROR_MESSAGE);
                     lineNumber++;
@@ -69,7 +69,7 @@ public class commandParsing {
                 draw.drawRectangle(x, y, length, length2, filledIn); //calls the draw square method within the draw panel class with filledIn as false
                 lineNumber++;
             }
-            if (Objects.equals(args[0], "circle")) {
+            if (args[0].equalsIgnoreCase( "circle")) {
                 int radius = IsNumber(args[1]);
                 if (radius <= 0) {
                     JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
@@ -81,12 +81,12 @@ public class commandParsing {
                 lineNumber++;
             }
 
-            if (Objects.equals(args[0], "clear")) {
+            if (args[0].equalsIgnoreCase("clear")) {
                 draw.clearsPanel();
                 lineNumber++;
             }
 
-            if (Objects.equals(args[0], "moveto")) {
+            if (args[0].equalsIgnoreCase( "moveto")) {
                 if (args.length != 3) {
                     JOptionPane.showMessageDialog(null, "Incorrect number of parameters", "Error", JOptionPane.ERROR_MESSAGE);
                     lineNumber++;
@@ -122,7 +122,7 @@ public class commandParsing {
             }
 
 
-            if (Objects.equals(args[0], "colour")) {
+            if (args[0].equalsIgnoreCase( "colour")) {
                 if (args.length != 4) {
                     JOptionPane.showMessageDialog(null, "Incorrect number of parameters", "Error", JOptionPane.ERROR_MESSAGE);
                     lineNumber++;
