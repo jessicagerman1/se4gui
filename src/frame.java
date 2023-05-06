@@ -1,7 +1,12 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class frame extends JFrame implements ActionListener {
     private textPanel textPanel = new textPanel();
@@ -34,9 +39,12 @@ public class frame extends JFrame implements ActionListener {
         JMenuItem load = new JMenuItem("LOAD");
         file.add(load);
         load.addActionListener(this);
-        JMenuItem save = new JMenuItem("SAVE");
-        file.add(save);
-        save.addActionListener(this);
+        JMenuItem saveImage = new JMenuItem("SAVE IMAGE");
+        file.add(saveImage);
+        saveImage.addActionListener(this);
+        JMenuItem saveText = new JMenuItem("SAVE COMMANDS");
+        file.add(saveText);
+        saveText.addActionListener(this);
         JMenuItem clear = new JMenuItem("CLEAR");
         file.add(clear);
         clear.addActionListener(this);
@@ -87,13 +95,27 @@ public class frame extends JFrame implements ActionListener {
             chooser.showOpenDialog(null);
             textPanel.loadFromFile(chooser);
         }
-        if (arg.equals("SAVE")){
-            String savedFilesName="";
+        if (arg.equals("SAVE COMMANDS")) {
+            String savedCommandFileName = "";
+            try {
+                savedCommandFileName = JOptionPane.showInputDialog("Choose the name of your saved commands file...");
+                FileWriter writer = new FileWriter(savedCommandFileName);
+                writer.write(textPanel.getText());
+                writer.close();
+                JOptionPane.showMessageDialog(null, "Text file Saved");
+            }
+            catch (NullPointerException | IOException ne) {
+                JOptionPane.showMessageDialog(null, "File save cancelled");
+            }
+        }
+
+        if (arg.equals("SAVE IMAGE")) {
+            String savedImageFileName="";
             try{
-                savedFilesName=JOptionPane.showInputDialog("Choose the name of your saved image file...");//shows text box to user to enter the name of the file they want
+                savedImageFileName=JOptionPane.showInputDialog("Choose the name of your saved image file...");//shows text box to user to enter the name of the file they want
                 BufferedImage image = new BufferedImage(drawPanel.getWidth(),drawPanel.getHeight(),BufferedImage.TYPE_INT_RGB);//creates an image as an object of BufferedImage to have the parameters of the component's height and width and for image to be coloured
                 (drawPanel).paint(image.getGraphics());//calls component's paint method using graphics object of the image
-                ImageIO.write(image, "PNG", new File(savedFilesName+".png"));
+                ImageIO.write(image, "PNG", new File(savedImageFileName+".png"));
                 JOptionPane.showMessageDialog(null, "PNG Saved");
             }
             catch (NullPointerException ne) {
