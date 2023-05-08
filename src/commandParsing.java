@@ -121,6 +121,28 @@ public class commandParsing {
                 //setting the x and y coordinates to the newly set ones by user
             }
 
+            if (args[1].equals("=")) { //checking for assignment of variables
+                    try {
+                        Integer.parseInt(args[2]);
+                        // checks args[2] is an integer
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Value is not a valid integer", "Error", JOptionPane.ERROR_MESSAGE);//returns error to user that value isn't an integer
+                        return;
+                    }
+                }
+            if (variables.contains(args[0])) { //checking whether the variable exists already
+                        for (int i = 0; i < variables.size(); i++) { //if variable exists then loop around the size of the
+                            // array list variables and update the corresponding value in values list to set it with the newly assigned value
+                            if (variables.get(i).equals(args[0])) {
+                                variablesValues.set(i, Integer.parseInt(args[2]));
+                                break; // exits the loop once variable has been updated
+                            }
+                        }
+                    }
+                    else { //if the variable doesn't exist already adds the variable and value to the array lists
+                        variablesValues.add(Integer.parseInt(args[2]));
+                        variables.add(args[0]);
+                    }
 
             if (args[0].equalsIgnoreCase( "colour")) {
                 if (args.length != 4) {
@@ -143,12 +165,10 @@ public class commandParsing {
                 continue;
             }
 
-            if (args[0].equalsIgnoreCase("if")) {
+                if (args[0].equalsIgnoreCase("if")) {
                 if (args.length != 5) {
                     JOptionPane.showMessageDialog(null, "Incorrect number of parameters", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                variables.add("x"); // TODO remove these when I've implemented variables
-                variablesValues.add(1); // TODO remove these when I've implemented variables
                 String commands = getIfStartAndEnd(userInput);
                 if (variables.contains(args[1].toLowerCase(Locale.ROOT))) {
                     if (args[2].equals("==")) {
@@ -158,7 +178,7 @@ public class commandParsing {
                                 int value = 0;
                                 for (Object var : variables) {
                                     if (args[1].equalsIgnoreCase(var.toString())) {
-                                        value = (int) variablesValues.get(counter);
+                                        value = variablesValues.get(counter);
                                     }
                                     counter++;
                                 }
