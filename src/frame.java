@@ -8,17 +8,26 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Frame class extends JFrame and implements ActionListener
+ * Creates frame of the GUI: two panels and a menu bar
+ */
 public class frame extends JFrame implements ActionListener {
     private textPanel textPanel = new textPanel();
     private drawPanel drawPanel = new drawPanel();
-    private int xcoordinate =0;
-    private int ycoordinate =0;
+    private int xcoordinate = 0;
+    private int ycoordinate = 0;
     private commandParsing parser = new commandParsing();
 
+    /**
+     * Constructor
+     * Creates a container with a grid layout and two panels to it
+     */
     public frame() {
+        //sets container to be a grid layout so panels are side by side
         Container con = getContentPane();
         GridLayout layout = new GridLayout(1, 2);
-        con.setLayout(layout);//sets container to be a grid layout so panels are side by side2
+        con.setLayout(layout);
 
         //Creating the MenuBar and adding components
         JMenuBar menuBar = new JMenuBar();
@@ -48,28 +57,33 @@ public class frame extends JFrame implements ActionListener {
         JMenuItem clear = new JMenuItem("CLEAR");
         file.add(clear);
         clear.addActionListener(this);
-
         JMenuItem exit = new JMenuItem("EXIT");
         file.add(exit);
         exit.addActionListener(this);//adds the action of exiting to the exit button itself
 
-
+        //adds text panel to frame
         textPanel.setVisible(true);
         textPanel.setSize(300, 300);
         textPanel.setBackground(Color.blue);
         this.add(textPanel);//adds the text panel to the frame
 
+        //adds draw panel to frame
         drawPanel.setVisible(true);
         drawPanel.setSize(300, 300);
         drawPanel.setBackground(Color.ORANGE);
         this.add(drawPanel);//adds the draw panel to the frame
 
-//        //run button
-        JButton b=new JButton("RUN");
+        // run button on text panel
+        JButton b = new JButton("RUN");
         textPanel.add(b);
         b.addActionListener(this);
     }
 
+    /**
+     * Method called when an action event occurs, and performs actions dependent on what event has happened.
+     *
+     * @param e action event that's taken place
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String arg = e.getActionCommand();
@@ -82,7 +96,14 @@ public class frame extends JFrame implements ActionListener {
             parser.parse(textPanel.getText(), xcoordinate, ycoordinate, drawPanel);
         }
 
-            if (arg.equals("CLEAR")) {
+        if (arg.equals("ABOUT")) {
+            JOptionPane.showMessageDialog(null,//JOptionPane brings up dialogue box with the text in
+                    "LOAD - choose load to open and load your text file; \n" +
+                            "SAVE - choose save to save your file;\n" +
+                            "EXIT - choose exit to leave the application");
+        }
+
+        if (arg.equals("CLEAR")) {
             drawPanel.clearsPanel();
         }
 
@@ -99,27 +120,24 @@ public class frame extends JFrame implements ActionListener {
                 writer.write(textPanel.getText());
                 writer.close();
                 JOptionPane.showMessageDialog(null, "Text file Saved");
-            }
-            catch (NullPointerException | IOException ne) {
+            } catch (NullPointerException | IOException ne) {
                 JOptionPane.showMessageDialog(null, "File save cancelled");
             }
         }
 
         if (arg.equals("SAVE IMAGE")) {
-            String savedImageFileName="";
-            try{
-                savedImageFileName=JOptionPane.showInputDialog("Choose the name of your saved image file...");//shows text box to user to enter the name of the file they want
-                BufferedImage image = new BufferedImage(drawPanel.getWidth(),drawPanel.getHeight(),BufferedImage.TYPE_INT_RGB);//creates an image as an object of BufferedImage to have the parameters of the component's height and width and for image to be coloured
+            String savedImageFileName = "";
+            try {
+                savedImageFileName = JOptionPane.showInputDialog("Choose the name of your saved image file...");//shows text box to user to enter the name of the file they want
+                BufferedImage image = new BufferedImage(drawPanel.getWidth(), drawPanel.getHeight(), BufferedImage.TYPE_INT_RGB);//creates an image as an object of BufferedImage to have the parameters of the component's height and width and for image to be coloured
                 (drawPanel).paint(image.getGraphics());//calls component's paint method using graphics object of the image
-                ImageIO.write(image, "PNG", new File(savedImageFileName+".png"));
+                ImageIO.write(image, "PNG", new File(savedImageFileName + ".png"));
                 JOptionPane.showMessageDialog(null, "PNG Saved");
-            }
-            catch (NullPointerException ne) {
+            } catch (NullPointerException ne) {
                 JOptionPane.showMessageDialog(null, "File save cancelled");
-            }
-            catch (IOException e1){
+            } catch (IOException e1) {
                 JOptionPane.showMessageDialog(null, "A problem occurred when saving the file");
             }
         }
-}
+    }
 }
