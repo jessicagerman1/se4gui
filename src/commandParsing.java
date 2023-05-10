@@ -119,7 +119,7 @@ public class commandParsing {
                 }
                 int newX = IsNumber(args[1]);
                 int newY = IsNumber(args[2]);//IsNumber method checks the value is a valid integer, -1 is invalid as is less than 0 or not a number as parseInt didn't work
-                if (newX == -1 || newY == -1)//checking values are valid integers, not -1
+                if (newX <0 || newY <0 )//checking values are valid integers, not less than 0
                 {
                     lineNumber++;
                     continue;
@@ -140,6 +140,11 @@ public class commandParsing {
                 }
                 int newX = IsNumber(args[1]);
                 int newY = IsNumber(args[2]);
+                if (newX <0 || newY <0 )//checking values are valid integers, not less than 0
+                {
+                    lineNumber++;
+                    continue;
+                }
                 draw.drawLine(x, y, newX, newY);
                 lineNumber++;
                 x = newX;
