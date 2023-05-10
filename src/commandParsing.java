@@ -228,6 +228,38 @@ public class commandParsing {
                 lineNumber++;
             }
 
+            //Checks whether the variable exists already.
+            // If variable exists then loops around the size of the variables list and updates the corresponding value
+            // in values list to set it with the newly assigned value.
+            // Exits the loop once variable has been updated.
+            else {
+                if (args[1].equals("=")) {
+                    if (variables.contains(args[0])) { //checks if exists in list already
+                        for (int i = 0; i < variables.size(); i++) { //loop around the size of the variables list
+                            if (variables.get(i).equals(args[0])) {
+                                try{
+                                    variablesValues.set(i, Integer.parseInt(args[2]));
+                                }
+                                catch (NumberFormatException e) {
+                                    JOptionPane.showMessageDialog(null, "Value is not a valid integer", "Error", JOptionPane.ERROR_MESSAGE);//returns error to user that value isn't an integer
+                                    return;
+                                }
+                                break; // exits the loop once variable has been updated
+                            }
+                        }
+                    }
+                    else {
+                        try {
+                            variablesValues.add(Integer.parseInt(args[2]));
+                            variables.add(args[0]);
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "Value is not a valid integer", "Error", JOptionPane.ERROR_MESSAGE);//returns error to user that value isn't an integer
+                            return;
+                        }
+                    }
+                }
+                lineNumber++;
+            }
         }
     }
 
