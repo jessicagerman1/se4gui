@@ -26,6 +26,30 @@ public class commandParsing {
     }
 
     /**
+     * Returns the value of the specified variable if it exists in the list of variables.
+     * @param args inputted arguments
+     * @return value of the variable as an integer, or -100 if the variable doesn't exist or isn't a valid integer
+     */
+    public int getVariable(String[] args) {
+        if (variables.contains(args[1])) { //checks if exists in list already
+            for (int i = 0; i < variables.size(); i++) { //loop around the size of the variables list
+                if (variables.get(i).equals(args[1])) {
+                    try {
+                        return variablesValues.get(i);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Value is not a valid integer", "Error", JOptionPane.ERROR_MESSAGE);//returns error to user that value isn't an integer
+                        return -100;
+                    }
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Value doesn't exist", "Error", JOptionPane.ERROR_MESSAGE);//returns error to user that value isn't an integer
+            return -100;
+             }
+        return 0;
+    }
+    /**
      *
      * Takes in user input, converts to lowercase and splits into an array of Strig objects
      *
@@ -58,9 +82,12 @@ public class commandParsing {
                 }
                 int length = IsNumber(args[1]);
                 if (length <= 0) {
-                    JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
-                    lineNumber++;
-                    continue;
+                    length=getVariable(args);
+                    if(length<=0) {
+                        JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
+                        lineNumber++;
+                        continue;
+                    }
                 }
                 boolean filledIn = Boolean.parseBoolean(args[2]);
                 draw.drawSquare(x, y, length, filledIn); //calls the draw square method within the draw panel class with filledIn as false
@@ -76,15 +103,21 @@ public class commandParsing {
                 }
                 int length = IsNumber(args[1]);
                 if (length <= 0) {
-                    JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
-                    lineNumber++;
-                    continue;
+                    length=getVariable(args);
+                    if(length<=0) {
+                        JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
+                        lineNumber++;
+                        continue;
+                    }
                 }
                 int length2 = IsNumber(args[2]);
                 if (length2 <= 0) {
-                    JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
-                    lineNumber++;
-                    continue;
+                    length2=getVariable(args);
+                    if(length2<=0) {
+                        JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
+                        lineNumber++;
+                        continue;
+                    }
                 }
                 boolean filledIn = Boolean.parseBoolean(args[2]);
                 draw.drawRectangle(x, y, length, length2, filledIn); //calls the draw square method within the draw panel class with filledIn as false
@@ -95,9 +128,12 @@ public class commandParsing {
             if (args[0].equalsIgnoreCase( "circle")) {
                 int radius = IsNumber(args[1]);
                 if (radius <= 0) {
-                    JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
-                    lineNumber++;
-                    continue;
+                    radius=getVariable(args);
+                    if(radius<=0) {
+                        JOptionPane.showMessageDialog(null, "Argument has to be an integer above zero", "Error", JOptionPane.ERROR_MESSAGE);
+                        lineNumber++;
+                        continue;
+                    }
                 }
                 boolean filledIn = Boolean.parseBoolean(args[2]);
                 draw.drawCircle(x, y, radius, filledIn);
@@ -151,31 +187,6 @@ public class commandParsing {
                 y = newY;
                 //setting the x and y coordinates to the newly set ones by user
             }
-
-            //Checks whether the variable exists already.
-            // If variable exists then loops around the size of the variables list and updates the corresponding value
-            //in values list to set it with the newly assigned value.
-            //Exits the loop once variable has been updated.
-            if (args[1].equals("=")) {
-                    try {
-                        Integer.parseInt(args[2]);// checks args[2] is an integer
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Value is not a valid integer", "Error", JOptionPane.ERROR_MESSAGE);//returns error to user that value isn't an integer
-                        return;
-                    }
-                }
-            if (variables.contains(args[0])) {
-                        for (int i = 0; i < variables.size(); i++) { //loop around the size of the variables list
-                            if (variables.get(i).equals(args[0])) {
-                                variablesValues.set(i, Integer.parseInt(args[2]));
-                                break; // exits the loop once variable has been updated
-                            }
-                        }
-                    }
-                    else { //if the variable doesn't exist, adds variable and value to the array lists
-                        variablesValues.add(Integer.parseInt(args[2]));
-                        variables.add(args[0]);
-                    }
 
             //if there's 4 arguments entered and the 2nd, 3rd and 4th are ints then these parameters are used to set the pen to the new colour of these RGB values
             if (args[0].equalsIgnoreCase( "colour")) {
