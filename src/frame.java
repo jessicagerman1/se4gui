@@ -99,7 +99,9 @@ public class frame extends JFrame implements ActionListener {
         if (arg.equals("ABOUT")) {
             JOptionPane.showMessageDialog(null,//JOptionPane brings up dialogue box with the text in
                     "LOAD - choose load to open and load your text file; \n" +
-                            "SAVE - choose save to save your file;\n" +
+                            "SAVE IMAGE- choose to save your image as a png file;\n" +
+                            "SAVE COMMANDS- choose to save your command as a text file;\n" +
+                            "CLEAR- choose to clear the screen;\n" +
                             "EXIT - choose exit to leave the application");
         }
 
