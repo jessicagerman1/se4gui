@@ -146,6 +146,20 @@ public class commandParsing {
                 lineNumber++;
             }
 
+            //resets pen position to top 0,0
+            if (args[0].equalsIgnoreCase("reset")) {
+                if (args.length != 1) {
+                    JOptionPane.showMessageDialog(null, "Incorrect number of parameters", "Error", JOptionPane.ERROR_MESSAGE);
+                    lineNumber++;
+                    continue;
+                }
+                x = 0;
+                y = 0;
+                draw.repaint();
+                lineNumber++;
+                continue;
+            }
+
             // Sets x and y to the 2nd and 3rd arguments if there are 3 args entered
             if (args[0].equalsIgnoreCase( "moveto")) {
                 if (args.length != 3) {
