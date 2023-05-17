@@ -1,11 +1,13 @@
+package code;
+
 import javax.swing.*;
 
 /**
- *Driver class has the main method that sets the frame and makes it visible
+ *code.Driver class has the main method that sets the code.frame and makes it visible
  */
 public class Driver {
     /**
-     * Main method that initialises frame and makes it visible
+     * Main method that initialises code.frame and makes it visible
      * @param args command line arguments
      */
     public static void main(String[] args){

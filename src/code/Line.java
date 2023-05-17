@@ -1,7 +1,9 @@
+package code;
+
 import java.awt.*;
 
 /**
- *Line class represents a line object
+ *code.Line class represents a line object
  */
 public class Line {
     private final Color colour;

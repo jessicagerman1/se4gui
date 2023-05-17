@@ -1,7 +1,9 @@
+package code;
+
 import java.awt.*;
 
 /**
- * Square class extends Shape class
+ * code.Square class extends code.Shape class
  */
 public class Square extends Shape{
     private int length;

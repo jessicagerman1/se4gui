@@ -1,3 +1,5 @@
+package code;
+
 import java.awt.*;
 
 /**
@@ -5,7 +7,7 @@ import java.awt.*;
  * Information about the width, height, colour, if it's filled in are here
  */
 public class Rectangle extends Shape {
-        private int width, height;
+    private int width, height;
 
     /**
      * Constructs new rectangle object

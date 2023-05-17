@@ -1,9 +1,11 @@
+package code;
+
 import java.awt.*;
 
 /**
- * Circle class extends Shape class
+ * code.Circle class extends Shape class
  */
-public class Circle extends Shape{
+public class Circle extends Shape {
     private int radius;
 
     /**

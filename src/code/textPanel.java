@@ -1,7 +1,10 @@
+package code;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 /**
@@ -10,22 +13,22 @@ import java.io.FileReader;
 public class textPanel extends JPanel {
     private String str;
     public JFileChooser chooser = new JFileChooser();
-    private JTextArea textArea;// makes it an attribute of the class so can use in multiple methods
+    public JTextArea textArea;// makes it an attribute of the class so can use in multiple methods
 
     /**
-     * Constructs a new textPanel object
+     * Constructs a new code.textPanel object
      */
     public textPanel() {
         textArea = new JTextArea();
         textArea.setEditable(true);
         textArea.setLineWrap(true);
-        JScrollPane scroller = new JScrollPane(textArea);// allows scrolling function in the text panel
+        JScrollPane scroller = new JScrollPane(textArea);// allows scrolling function in the code.text panel
         scroller.setPreferredSize(new Dimension(300, 300));
         add(scroller);
     }
 
 //    /**
-//     * @return an array of strings of each line of text in text area
+//     * @return an array of strings of each line of code.text in code.text area
 //     */
 //    public String[] getInstructions() {
 //        return str.split("\n");//splits by each line as each command is on a new line, returns separate commands
@@ -42,7 +45,7 @@ public class textPanel extends JPanel {
      * Loads the imported file into textArea
      * @param evt the file that is loaded in
      */
-    public void loadFromFile(JFileChooser evt) {
+    public void loadFromFile(JFileChooser evt) throws FileNotFoundException {
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename=f.getAbsolutePath();

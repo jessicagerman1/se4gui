@@ -1,3 +1,5 @@
+package code;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -5,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * commandParsing class executes commands from the user's input
+ * code.commandParsing class executes commands from the user's input
  */
 public class commandParsing {
     private List<String> variables = new ArrayList<>();
@@ -58,7 +60,7 @@ public class commandParsing {
      * @param userInput the input the user enters which is trimmed and put to lower case
      * @param x second argument (an integer) entered by user
      * @param y third argument (integer) entered by user
-     * @param draw object of type drawPanel
+     * @param draw object of type code.drawPanel
      */
     public void parse(String userInput, int x, int y, drawPanel draw) {
         int lineNumber = 0;
@@ -140,7 +142,7 @@ public class commandParsing {
                 lineNumber++;
             }
 
-            //clears the drawPanel object
+            //clears the code.drawPanel object
             if (args[0].equalsIgnoreCase("clear")) {
                 draw.clearsPanel();
                 lineNumber++;
@@ -290,7 +292,7 @@ public class commandParsing {
 
     /**
      * @param userInput is split by line and beginning and end of the if statement is found
-     * @return text between start and end of if statement user writes in
+     * @return code.text between start and end of if statement user writes in
      */
     public String getIfStartAndEnd(String userInput) {
         String text = "";

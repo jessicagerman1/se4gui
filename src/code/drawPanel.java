@@ -1,4 +1,4 @@
-import org.w3c.dom.Text;
+package code;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class drawPanel extends JPanel {
     private Color colour;
 
     /**
-     *Constructs a new drawPanel object
+     *Constructs a new code.drawPanel object
      */
     public drawPanel(){
         colour= Color.BLACK;
@@ -82,8 +82,8 @@ public class drawPanel extends JPanel {
         this.colour = colour;
      }
 
-//     public void writesText(int x, int y, String text, Boolean fontIsBold){
-//         shapes.add(new Text(x, y, text, fontIsBold));
+//     public void writesText(int x, int y, String code.text, Boolean fontIsBold){
+//         shapes.add(new Text(x, y, code.text, fontIsBold));
 //        repaint();
 //     }
 

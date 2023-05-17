@@ -1,3 +1,5 @@
+package code;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -5,12 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
  * Frame class extends JFrame and implements ActionListener
- * Creates frame of the GUI: two panels and a menu bar
+ * Creates code.frame of the GUI: two panels and a menu bar
  */
 public class frame extends JFrame implements ActionListener {
     private textPanel textPanel = new textPanel();
@@ -31,7 +34,7 @@ public class frame extends JFrame implements ActionListener {
 
         //Creating the MenuBar and adding components
         JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);//when extending JFrame don't need to do frame. eg frame.setJMenuBar because the actions of the JFrame class are already able to be used
+        setJMenuBar(menuBar);//when extending JFrame don't need to do code.frame. eg code.frame.setJMenuBar because the actions of the JFrame class are already able to be used
 
         //menu bar
         JMenu file = new JMenu("FILE");
@@ -61,19 +64,19 @@ public class frame extends JFrame implements ActionListener {
         file.add(exit);
         exit.addActionListener(this);//adds the action of exiting to the exit button itself
 
-        //adds text panel to frame
+        //adds code.text panel to code.frame
         textPanel.setVisible(true);
         textPanel.setSize(300, 300);
         textPanel.setBackground(Color.blue);
-        this.add(textPanel);//adds the text panel to the frame
+        this.add(textPanel);//adds the code.text panel to the code.frame
 
-        //adds draw panel to frame
+        //adds draw panel to code.frame
         drawPanel.setVisible(true);
         drawPanel.setSize(300, 300);
         drawPanel.setBackground(Color.ORANGE);
-        this.add(drawPanel);//adds the draw panel to the frame
+        this.add(drawPanel);//adds the draw panel to the code.frame
 
-        // run button on text panel
+        // run button on code.text panel
         JButton b = new JButton("RUN");
         textPanel.add(b);
         b.addActionListener(this);
@@ -97,10 +100,10 @@ public class frame extends JFrame implements ActionListener {
         }
 
         if (arg.equals("ABOUT")) {
-            JOptionPane.showMessageDialog(null,//JOptionPane brings up dialogue box with the text in
-                    "LOAD - choose load to open and load your text file; \n" +
+            JOptionPane.showMessageDialog(null,//JOptionPane brings up dialogue box with the code.text in
+                    "LOAD - choose load to open and load your code.text file; \n" +
                             "SAVE IMAGE- choose to save your image as a png file;\n" +
-                            "SAVE COMMANDS- choose to save your command as a text file;\n" +
+                            "SAVE COMMANDS- choose to save your command as a code.text file;\n" +
                             "CLEAR- choose to clear the screen;\n" +
                             "EXIT - choose exit to leave the application");
         }
@@ -112,7 +115,11 @@ public class frame extends JFrame implements ActionListener {
         if (arg.equals("LOAD")) {
             JFileChooser chooser = new JFileChooser();
             chooser.showOpenDialog(null);
-            textPanel.loadFromFile(chooser);
+            try {
+                textPanel.loadFromFile(chooser);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
         }
         if (arg.equals("SAVE COMMANDS")) {
             String savedCommandFileName = "";
@@ -130,7 +137,7 @@ public class frame extends JFrame implements ActionListener {
         if (arg.equals("SAVE IMAGE")) {
             String savedImageFileName = "";
             try {
-                savedImageFileName = JOptionPane.showInputDialog("Choose the name of your saved image file...");//shows text box to user to enter the name of the file they want
+                savedImageFileName = JOptionPane.showInputDialog("Choose the name of your saved image file...");//shows code.text box to user to enter the name of the file they want
                 BufferedImage image = new BufferedImage(drawPanel.getWidth(), drawPanel.getHeight(), BufferedImage.TYPE_INT_RGB);//creates an image as an object of BufferedImage to have the parameters of the component's height and width and for image to be coloured
                 (drawPanel).paint(image.getGraphics());//calls component's paint method using graphics object of the image
                 ImageIO.write(image, "PNG", new File(savedImageFileName + ".png"));
@@ -141,5 +148,9 @@ public class frame extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "A problem occurred when saving the file");
             }
         }
+    }
+
+    public drawPanel getdrawPanel() {
+        return drawPanel;
     }
 }
