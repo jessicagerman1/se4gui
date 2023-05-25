@@ -12,6 +12,8 @@ import java.util.Locale;
 public class commandParsing {
     private List<String> variables = new ArrayList<>();
     private List<Integer> variablesValues = new ArrayList<>();
+    public boolean commandIsValid = false;
+    List<String> validCommands = List.of("circle", "square", "rectangle", "line", "drawto", "moveto", "reset", "clear");
 
     /**
      * @param arg the String input from the user
@@ -206,6 +208,8 @@ public class commandParsing {
 
             //if there's 4 arguments entered and the 2nd, 3rd and 4th are ints then these parameters are used to set the pen to the new colour of these RGB values
             if (args[0].equalsIgnoreCase( "colour")) {
+                JOptionPane.showMessageDialog(null, "not valid command", "Error", JOptionPane.ERROR_MESSAGE);
+
                 if (args.length != 4) {
                     JOptionPane.showMessageDialog(null, "Incorrect number of parameters", "Error", JOptionPane.ERROR_MESSAGE);
                     lineNumber++;
@@ -224,6 +228,13 @@ public class commandParsing {
                 draw.changeColour(newColour);// calls change colour method, sets colour of pen using new colour variable
                 lineNumber++;
                 continue;
+            }
+
+            for (String valid : validCommands) {
+                if(valid.equalsIgnoreCase(String.valueOf(args))) {
+                    commandIsValid = true;
+                    break;
+                }
             }
 
             //If there are 5 arguments, the 2nd arg is ==, 4th is a positive integer and 5th is 'then',

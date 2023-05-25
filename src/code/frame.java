@@ -150,6 +150,10 @@ public class frame extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * draw panel returned
+     * @return draw panel
+     */
     public drawPanel getdrawPanel() {
         return drawPanel;
     }
