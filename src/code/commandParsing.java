@@ -55,7 +55,7 @@ public class commandParsing {
     }
     /**
      *
-     * Takes in user input, converts to lowercase and splits into an array of Strig objects
+     * Takes in user input, converts to lowercase and splits into an array of String objects
      *
      * Each line of input is looped over, split into individual words, checking for commands to draw shapes from
      *
@@ -208,7 +208,7 @@ public class commandParsing {
 
             //if there's 4 arguments entered and the 2nd, 3rd and 4th are ints then these parameters are used to set the pen to the new colour of these RGB values
             if (args[0].equalsIgnoreCase( "colour")) {
-                JOptionPane.showMessageDialog(null, "not valid command", "Error", JOptionPane.ERROR_MESSAGE);
+//                JOptionPane.showMessageDialog(null, "not valid command", "Error", JOptionPane.ERROR_MESSAGE);
 
                 if (args.length != 4) {
                     JOptionPane.showMessageDialog(null, "Incorrect number of parameters", "Error", JOptionPane.ERROR_MESSAGE);
@@ -265,7 +265,6 @@ public class commandParsing {
                 }
                 lineNumber++;
             }
-
             //Checks whether the variable exists already.
             // If variable exists then loops around the size of the variables list and updates the corresponding value
             // in values list to set it with the newly assigned value.
@@ -320,9 +319,9 @@ public class commandParsing {
                 ifEnd = x;
             }
         }
-        for (int x = ifStart; x <= ifEnd - 1; x++) {
-            text += lines[x] + "\n";
-        }
+            for (int x = ifStart; x <= ifEnd - 1; x++) {
+                text += lines[x] + "\n";
+            }
         return text;
     }
 
